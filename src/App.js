@@ -1,34 +1,50 @@
-import React from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import { useJsApiLoader } from "@react-google-maps/api"
+import React from "react";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate
+} from "react-router-dom"
+import Menu from "./components/Menu";
+import MapDisplay from "./components/MapDisplay";
+import AboutPage from "./components/AboutPage";
+import TruckLogin from "./components/TruckLogin";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 
-const containerStyle = {
-  width: '500px',
-  height: '500px'
-};
+function App() {
+    return (
+        <Router>
+            <Menu />
+            <Routes>
+                <Route
+                    path="/mapdisplay"
+                    element={
+                        <ProtectedRoute isPrivate={false}>
+                            <MapDisplay />
+                        </ProtectedRoute>
+                    }
+                />   
+                <Route
+                    path="/about"
+                    element={
+                        <ProtectedRoute isPrivate={false}>
+                            <AboutPage />
+                        </ProtectedRoute>
+                    }
+                />  
+                <Route
+                    path="/login"
+                    element={
+                        <ProtectedRoute isPrivate={true}>
+                            <TruckLogin />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route path="*" element={<Navigate to="/mapdisplay" />} />   
+            </Routes>
+        </Router>
+    );
+} 
 
-const center = {
-  lat: 41.2565,
-  lng: -95.9345
-};
-
-function MyComponent() {
-  return (
-    <LoadScript
-      googleMapsApiKey="AIzaSyCUsNTk-UhiAZbzXaWwDcdWYWkPjZ7eChg"
-    >
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={10}
-      >
-      <Marker position={{lat: 41.2565,lng: -95.9345}} />
-        { /* Child components, such as markers, info windows, etc. */ }
-        <></>
-      </GoogleMap>
-    </LoadScript>
-  )
-}
-
-export default React.memo(MyComponent)
+export default App;
