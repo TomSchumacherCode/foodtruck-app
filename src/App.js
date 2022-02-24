@@ -4,26 +4,26 @@ import { useJsApiLoader } from "@react-google-maps/api"
 
 
 const containerStyle = {
-  width: '800px',
-  height: '750px'
+  width: '500px',
+  height: '500px'
 };
 
 const center = {
   lat: 41.2565,
-  lng: 95.9345
+  lng: -95.9345
 };
 
 function MyComponent() {
   return (
     <LoadScript
-      googleMapsApiKey="keyAIzaSyAXWTvgiIv0FPs4LnmZP8bf0pfv-XHAz14"
+      googleMapsApiKey="AIzaSyCUsNTk-UhiAZbzXaWwDcdWYWkPjZ7eChg"
     >
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
         zoom={10}
       >
-      <Marker position={{lat: 41.2565,lng: 95.9345}} />
+      <Marker position={{lat: 41.2565,lng: -95.9345}} />
         { /* Child components, such as markers, info windows, etc. */ }
         <></>
       </GoogleMap>
