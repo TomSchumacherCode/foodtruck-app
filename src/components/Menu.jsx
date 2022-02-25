@@ -6,9 +6,9 @@ function Menu() {
 
     return(
         <nav className="menu flex">
-            <NavLink> Map </NavLink>
-            <NavLink> About </NavLink>
-            <NavLink> Truck Login </NavLink>
+            <NavLink to="mapdisplay"> Map </NavLink>
+            <NavLink to="about"> About </NavLink>
+            <NavLink to="login"> Truck Login </NavLink>
         </nav>
     )
 }

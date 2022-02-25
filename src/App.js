@@ -36,7 +36,7 @@ function App() {
                 <Route
                     path="/login"
                     element={
-                        <ProtectedRoute isPrivate={true}>
+                        <ProtectedRoute isPrivate={false}>
                             <TruckLogin />
                         </ProtectedRoute>
                     }

@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useRef} from "react";
 
 function TruckLogin({setUser}) {
-    const usernameInput = useRef(null);
-    const passwordInput = useRef(null);
-    
+    return (
+        <h2>Truck Login</h2>
+    )
 }
 
 
