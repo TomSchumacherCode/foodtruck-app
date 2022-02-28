@@ -6,10 +6,11 @@ import {
     Navigate
 } from "react-router-dom"
 import Menu from "./components/Menu";
-import MapDisplay from "./components/MapDisplay";
+import MapView from "./components/MapView";
 import AboutPage from "./components/AboutPage";
 import TruckLogin from "./components/TruckLogin";
 import ProtectedRoute from "./components/ProtectedRoute";
+
 
 
 function App() {
@@ -18,10 +19,10 @@ function App() {
             <Menu />
             <Routes>
                 <Route
-                    path="/mapdisplay"
+                    path="/map"
                     element={
                         <ProtectedRoute isPrivate={false}>
-                            <MapDisplay />
+                            <MapView />
                         </ProtectedRoute>
                     }
                 />   
@@ -41,7 +42,7 @@ function App() {
                         </ProtectedRoute>
                     }
                 />
-                <Route path="*" element={<Navigate to="/mapdisplay" />} />   
+                <Route path="*" element={<Navigate to="/map" />} />   
             </Routes>
         </Router>
     );
