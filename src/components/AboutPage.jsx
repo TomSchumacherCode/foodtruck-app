@@ -2,7 +2,12 @@ import React from "react";
 
 function AboutPage() {
     return (
-        <h2>About Page</h2>
+        <div> 
+            <p>*Record Scratch* *Freeze Frame*</p>
+            <br />
+            <p> Yup, that's me. You're probably wondering how I ended up in this situation...</p>
+        </div>
+   
     )
 }
 
