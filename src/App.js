@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     BrowserRouter as Router,
     Routes,
@@ -10,10 +10,14 @@ import MapView from "./components/MapView";
 import AboutPage from "./components/AboutPage";
 import TruckLogin from "./components/TruckLogin";
 import ProtectedRoute from "./components/ProtectedRoute";
+import EventForm from "./components/EventForm";
+
 
 
 
 function App() {
+    const[activeUser, setActiveUser] = useState(null)
+        console.log("ActiveUser:", activeUser)
     return (
         <Router>
             <Menu />
@@ -38,10 +42,18 @@ function App() {
                     path="/login"
                     element={
                         <ProtectedRoute isPrivate={false}>
-                            <TruckLogin />
+                            <TruckLogin setActiveUser={setActiveUser}/>
                         </ProtectedRoute>
                     }
                 />
+                <Route
+                    path="/createEvent"
+                    element={
+                        <ProtectedRoute isPrivate={true} activeUser={activeUser}>
+                            <EventForm />
+                        </ProtectedRoute>
+                    }
+                />  
                 <Route path="*" element={<Navigate to="/map" />} />   
             </Routes>
         </Router>
