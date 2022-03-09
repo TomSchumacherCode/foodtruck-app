@@ -10,7 +10,7 @@ import FormLabel from '@mui/material/FormLabel';
 
 function MapView () {
    
-    const [mapTheme, setMapTheme] = useState("mapsThemeMondrian")
+    const [mapTheme, setMapTheme] = useState("mapsShadesOfGray")
 
 
     const setTheme = (event) => {
@@ -28,10 +28,10 @@ function MapView () {
                 name="radio-buttons-group"
                 onChange={setTheme}>
                     
-
+                <FormControlLabel value="mapsThemeShadesOfGray" control={<Radio />} label="Shades Of Gray" />
                 <FormControlLabel value="mapsThemeMondrian" control={<Radio />} label="Mondrian" />
                 <FormControlLabel value="mapsThemeAssassinsCreed" control={<Radio />} label="Assassin's Creed" />
-                <FormControlLabel value="mapsThemeShadesOfGray" control={<Radio />} label="Shades Of Gray" />
+            
             </RadioGroup>
         
             <MapDisplay mapTheme={mapTheme}>

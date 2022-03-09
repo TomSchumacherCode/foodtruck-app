@@ -11,6 +11,8 @@ import AboutPage from "./components/AboutPage";
 import TruckLogin from "./components/TruckLogin";
 import ProtectedRoute from "./components/ProtectedRoute";
 import EventForm from "./components/EventForm";
+import Register from "./components/Register";
+
 
 
 
@@ -50,7 +52,7 @@ function App() {
                     path="/register"
                     element={
                         <ProtectedRoute isPrivate={false}>
-                            <TruckLogin />
+                            <Register />
                         </ProtectedRoute>
                     }
                 />
