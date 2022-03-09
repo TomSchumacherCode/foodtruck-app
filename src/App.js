@@ -47,6 +47,14 @@ function App() {
                     }
                 />
                 <Route
+                    path="/register"
+                    element={
+                        <ProtectedRoute isPrivate={false}>
+                            <TruckLogin />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
                     path="/createEvent"
                     element={
                         <ProtectedRoute isPrivate={true} activeUser={activeUser}>
@@ -54,6 +62,7 @@ function App() {
                         </ProtectedRoute>
                     }
                 />  
+                
                 <Route path="*" element={<Navigate to="/map" />} />   
             </Routes>
         </Router>

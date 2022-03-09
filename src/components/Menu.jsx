@@ -18,6 +18,7 @@ export default function NavTabs() {
         <Tab component={NavLink} label="Map" to="map" />
         <Tab component={NavLink} label="About" to="about" />
         <Tab component={NavLink} label="Truck Login" to="login" />
+        <Tab component={NavLink} label="Register" to="register" />
         <Tab component={NavLink} label="Create Event" to="createEvent" />
 
       </Tabs>
