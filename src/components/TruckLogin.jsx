@@ -1,12 +1,15 @@
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAPI from "../hooks/useAPI";
+
 
 function TruckLogin({ setActiveUser }) {
+  const {login} = useAPI();
   const usernameInput = useRef(null);
   const passwordInput = useRef(null);
   const navigate = useNavigate();
 
-  const handleLogin = useCallback(() => {
+  const handleLogin = useCallback(async() => {
     const username = usernameInput.current.value;
     const password = passwordInput.current.value;
     if (
@@ -17,9 +20,15 @@ function TruckLogin({ setActiveUser }) {
     ) {
       return;
     }
-    setActiveUser(username);
+    const data = await login(username, password);
+    if (!data.success) {
+    }
+
+    setActiveUser(data);
     navigate("/map");
   }, []);
+
+
 
   return (
     <div>

@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useCallback } from "react";
+
 
 function AboutPage() {
+
     return (
         <div> 
             <p>*Record Scratch* *Freeze Frame*</p>
