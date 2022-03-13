@@ -29,6 +29,19 @@ export default function useAPI() {
     [makeAPICall]
   );
 
+  const register = useCallback(
+    async (username, password, truckName) => {
+      return await makeAPICall("/api/users/register", {
+        method: "PUT",
+        body: JSON.stringify({ username, password, truckName }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    },
+    [makeAPICall]
+  );
+
   const test = useCallback(
     async () => {
       return await makeAPICall("/api/testing/json", {
@@ -42,5 +55,5 @@ export default function useAPI() {
   );
 
 
-  return { login, test };
+  return { login, test, register };
 }

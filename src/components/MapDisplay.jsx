@@ -20,6 +20,18 @@ const center = {
   lng: -95.9345
 };
 
+
+
+const testMarker = { lat: 40.7699478, lng: -96.7161464 };
+const event1 = { lat: 41.7699478, lng: -96.7161464 };
+const event2 = { lat: 42.7699478, lng: -96.7161464 };
+
+const foodTruckEvents = [
+    event1,
+    event2,
+    testMarker
+]
+
 function MapDisplay(props) {
     const googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -37,13 +49,15 @@ function MapDisplay(props) {
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={10}
+        zoom={8}
         options={mapOptions}
         
       >
       <Marker position={{lat: 41.2565,lng: -95.9345}} />
-        { /* Child components, such as markers, info windows, etc. */ }
-        <></>
+      {foodTruckEvents.map((event, index) => {
+            return <Marker key={index} position={event} />
+
+      })}
       </GoogleMap>
     </LoadScript>
   )
