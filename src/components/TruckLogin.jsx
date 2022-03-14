@@ -29,7 +29,7 @@ function TruckLogin({ setActiveUser }) {
     // console.log(eventsList)
 
     // getEventsByUserId(response.data.id);
-    setActiveUser(response.data);
+    setActiveUser(response.data)
     navigate("/map");
   }, []);
 

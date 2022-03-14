@@ -42,15 +42,20 @@ function MapDisplay({mapTheme, activeUser}) {
     const currentTheme = mapThemes.find((theme) => theme.name === mapTheme)
     const mapOptions = {styles: currentTheme?.value}
     const api = useAPI();
-    useEffect( async () => {
+    useEffect(() => {
         console.log("ActiveUser inside useEffect", activeUser)
-
-        if (activeUser) {
-            const events = await api.getEventsByUserId(activeUser.id)
-            console.log(events)
-            setFoodTruckEvents(events)
+        async function fetchData() {
+            if (activeUser) {
+                const events = await api.getEventsByUserId(activeUser.id)
+                console.log(events)
+                const googleFormat = events.data.map(item => {
+                    return{lat: parseFloat(item.lat), lng: parseFloat(item.lng)}
+                })
+                setFoodTruckEvents(googleFormat)
+            }
         }
-    },[useAPI, activeUser])
+        fetchData()
+    },[activeUser])
    
 
   return (
@@ -65,7 +70,7 @@ function MapDisplay({mapTheme, activeUser}) {
         
       >
       <Marker position={{lat: 41.2565,lng: -95.9345}} />
-      {foodTruckEvents.map((event, index) => {
+      {foodTruckEvents.length && foodTruckEvents.map((event, index) => {
             return <Marker key={index} position={event} />
 
       })}
