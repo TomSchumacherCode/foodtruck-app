@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import mapsThemeShadesOfGray from "../static/mapsTheme_shadesOfGray.json";
 import mapsThemeAssassinsCreed from "../static/mapsTheme_assassinsCreed.json";
 import mapsThemeMondrian from "../static/mapsTheme_mondrian.json";
+import useAPI from "../hooks/useAPI";
+import { API } from 'google-places-web';
 
 const mapThemes = [
     {name: "mapsThemeMondrian", value: mapsThemeMondrian},
@@ -22,25 +24,34 @@ const center = {
 
 
 
-const testMarker = { lat: 40.7699478, lng: -96.7161464 };
-const event1 = { lat: 41.7699478, lng: -96.7161464 };
-const event2 = { lat: 42.7699478, lng: -96.7161464 };
+// const testMarker = { lat: 40.7699478, lng: -96.7161464 };
+// const event1 = { lat: 41.7699478, lng: -96.7161464 };
+// const event2 = { lat: 42.7699478, lng: -96.7161464 };
 
-const foodTruckEvents = [
-    event1,
-    event2,
-    testMarker
-]
+// const foodTruckEvents = [
+//     event1,
+//     event2,
+//     testMarker
+// ]
 
-function MapDisplay(props) {
+function MapDisplay({mapTheme, activeUser}) {
+    console.log("ActiveUser in Map Display", activeUser)
     const googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+    const [foodTruckEvents, setFoodTruckEvents] = useState([]);
 
-
-    const currentTheme = mapThemes.find((theme) => theme.name === props.mapTheme)
+    const currentTheme = mapThemes.find((theme) => theme.name === mapTheme)
     const mapOptions = {styles: currentTheme?.value}
+    const api = useAPI();
+    useEffect( async () => {
+        console.log("ActiveUser inside useEffect", activeUser)
 
-    console.log(props)
-
+        if (activeUser) {
+            const events = await api.getEventsByUserId(activeUser.id)
+            console.log(events)
+            setFoodTruckEvents(events)
+        }
+    },[useAPI, activeUser])
+   
 
   return (
     <LoadScript

@@ -28,7 +28,7 @@ function App() {
                     path="/map"
                     element={
                         <ProtectedRoute isPrivate={false}>
-                            <MapView />
+                            <MapView activeUser={activeUser}/>
                         </ProtectedRoute>
                     }
                 />   

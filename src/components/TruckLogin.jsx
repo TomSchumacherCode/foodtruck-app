@@ -4,7 +4,7 @@ import useAPI from "../hooks/useAPI";
 
 
 function TruckLogin({ setActiveUser }) {
-  const {login} = useAPI();
+  const {login, getEventsByUserId} = useAPI();
   const usernameInput = useRef(null);
   const passwordInput = useRef(null);
   const navigate = useNavigate();
@@ -23,7 +23,12 @@ function TruckLogin({ setActiveUser }) {
     const response = await login(username, password);
     if (!response.success) {
     }
+    // const eventsList = await getEventsByUserId(response.data.id);
+    // if (!response.success) {
+    // }
+    // console.log(eventsList)
 
+    // getEventsByUserId(response.data.id);
     setActiveUser(response.data);
     navigate("/map");
   }, []);

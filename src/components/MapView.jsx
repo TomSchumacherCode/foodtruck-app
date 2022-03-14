@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MapDisplay from "./MapDisplay";
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -8,7 +8,9 @@ import FormLabel from '@mui/material/FormLabel';
 
 
 
-function MapView () {
+function MapView ({activeUser}) {
+    console.log("ActiveUser in mapView", activeUser)
+    
    
     const [mapTheme, setMapTheme] = useState("mapsShadesOfGray")
 
@@ -34,7 +36,7 @@ function MapView () {
             
             </RadioGroup>
         
-            <MapDisplay mapTheme={mapTheme}>
+            <MapDisplay mapTheme={mapTheme} activeUser={activeUser}>
 
             </MapDisplay>
         </>

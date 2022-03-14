@@ -54,6 +54,18 @@ export default function useAPI() {
     [makeAPICall]
   );
 
+  const getEventsByUserId = useCallback(
+    async (userId) => {
+      return await makeAPICall(`/api/events/${userId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    },
+    [makeAPICall]
+  );
 
-  return { login, test, register };
+
+  return { login, test, register, getEventsByUserId };
 }
