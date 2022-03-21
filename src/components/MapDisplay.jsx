@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, InfoBox } from '@react-google-maps/api';
 import mapsThemeShadesOfGray from "../static/mapsTheme_shadesOfGray.json";
 import mapsThemeAssassinsCreed from "../static/mapsTheme_assassinsCreed.json";
 import mapsThemeMondrian from "../static/mapsTheme_mondrian.json";
@@ -45,14 +45,12 @@ function MapDisplay({mapTheme, activeUser}) {
     useEffect(() => {
         console.log("ActiveUser inside useEffect", activeUser)
         async function fetchData() {
-            if (activeUser) {
-                const events = await api.getEventsByUserId(activeUser.id)
-                console.log(events)
-                const googleFormat = events.data.map(item => {
-                    return{lat: parseFloat(item.lat), lng: parseFloat(item.lng)}
-                })
-                setFoodTruckEvents(googleFormat)
-            }
+          const events = await api.allEvents()
+          console.log(events)
+          const googleFormat = events.data.map(item => {
+            return{lat: parseFloat(item.lat), lng: parseFloat(item.lng)}
+          })
+          setFoodTruckEvents(googleFormat)
         }
         fetchData()
     },[activeUser])
@@ -71,7 +69,12 @@ function MapDisplay({mapTheme, activeUser}) {
       >
       <Marker position={{lat: 41.2565,lng: -95.9345}} />
       {foodTruckEvents.length && foodTruckEvents.map((event, index) => {
-            return <Marker key={index} position={event} />
+            return (
+              <Marker key={index} position={event}>
+                {/* <InfoBox>TEST</InfoBox> */}
+              </Marker>
+            )
+
 
       })}
       </GoogleMap>

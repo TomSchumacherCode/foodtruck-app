@@ -4,7 +4,7 @@ import useAPI from "../hooks/useAPI";
 
 
 function TruckLogin({ setActiveUser }) {
-  const {login, getEventsByUserId} = useAPI();
+  const {login} = useAPI();
   const usernameInput = useRef(null);
   const passwordInput = useRef(null);
   const navigate = useNavigate();

@@ -66,6 +66,31 @@ export default function useAPI() {
     [makeAPICall]
   );
 
+  const usersByUserIds = useCallback(
+    async (userIds) => {
+      const url = "/api/users?" + userIds.map((userId) => `userId=${userId}`).join("&")
+      return await makeAPICall(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    },
+    [makeAPICall]
+  );
 
-  return { login, test, register, getEventsByUserId };
+  const allEvents = useCallback(
+    async () => {
+      return await makeAPICall("/api/events", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    },
+    [makeAPICall]
+  );
+
+
+  return { login, test, register, getEventsByUserId, usersByUserIds, allEvents };
 }
