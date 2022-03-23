@@ -29,6 +29,20 @@ export default function useAPI() {
     [makeAPICall]
   );
 
+  const createEvent = useCallback(
+    async (lat, lng, userId) => {
+      return await makeAPICall("/api/events", {
+        method: "POST",
+        body: JSON.stringify({ lat, lng, userId }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    },
+    [makeAPICall]
+  );
+
+
   const register = useCallback(
     async (username, password, truckName) => {
       return await makeAPICall("/api/users/register", {
@@ -92,5 +106,5 @@ export default function useAPI() {
   );
 
 
-  return { login, test, register, getEventsByUserId, usersByUserIds, allEvents };
+  return { login, test, register, getEventsByUserId, usersByUserIds, allEvents, createEvent };
 }

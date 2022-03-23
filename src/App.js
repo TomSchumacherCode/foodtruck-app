@@ -60,7 +60,7 @@ function App() {
                     path="/createEvent"
                     element={
                         <ProtectedRoute isPrivate={true} activeUser={activeUser}>
-                            <EventForm />
+                            <EventForm activeUser={activeUser}/>
                         </ProtectedRoute>
                     }
                 />  
